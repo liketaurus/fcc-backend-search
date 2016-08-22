@@ -1,0 +1,32 @@
+{
+  "name": "image-search",
+  "version": "1.0.0",
+  "description": "A simple image search service created in order to took a part in freeCodeCamp back-end certification",
+  "main": "app.js",
+  "scripts": {
+    "start": "node app.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/liketaurus/fcc-backend-search.git"
+  },
+  "keywords": [
+    "node",
+    "heroku",
+    "image",
+    "search",
+    "API",
+    "freeCodeCamp"
+  ],
+  "author": "Alexander Babich",
+  "license": "ISC",
+  "engines": {
+    "node": "4.4.5",
+    "npm": "3.10.5"
+  },
+  "bugs": {
+    "url": "https://github.com/liketaurus/fcc-backend-search/issues"
+  },
+  "homepage": "https://github.com/liketaurus/fcc-backend-search#readme"
+}

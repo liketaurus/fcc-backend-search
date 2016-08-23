@@ -1,6 +1,9 @@
+//ababeen's best free google  image search  APIs1.0 used
+//see more: http://api.ababeen.com/
 module.exports = function(app, db) {
-    app.route('/:query').get(newQuery);
     app.route('/latest').get(getlatest);
+    app.get('/:query', newQuery);
+
 
 
     function save(obj, db) {
@@ -12,36 +15,52 @@ module.exports = function(app, db) {
     }
 
     function newQuery(req, res) {
-        
+
         var query = req.params.query;
         var size = req.query.offset || 10;
-        
+
         var queryDocument = {};
         queryDocument = {
-                "term": query,
-                "when": new Date().toLocaleString()
-            };
+            "term": query,
+            "when": new Date().toLocaleString()
+        };
+        if (query !== 'favicon.ico') {
             save(queryDocument, db);
+        }
+
         var najax = require('najax')
-        najax.get('http://api.ababeen.com/api/images.php?q='+query+'&count='+size, function(data){
-            data=JSON.parse(data);
-            res.send(data.map(function(img){
+        najax.get('http://api.ababeen.com/api/images.php?q=' + query + '&count=' + size, function(data) {
+            data = JSON.parse(data);
+            res.send(data.map(function(img) {
                 return {
                     "url": img.url,
                     "snippet": img.title,
                     "thumbnail": img.tbUrl,
                     "context": img.originalContextUrl
-                }; 
+                };
             }));
         });
-            
+
     }
 
-    function getlatest(req, res)
-    {
-        console.log('Not implemented yet');
+    function getlatest(req, res) {
+        var queries = db.collection('queries');
+        queries.find({}).toArray(function(err, result) {
+            res.send(result.sort(function(a, b) {
+                    return new Date(b.when).getTime() - new Date(a.when).getTime()
+                })
+                .filter(function(fav) {
+                    return fav.term !== 'favicon.ico';
+                })
+                .map(function(query) {
+                    return {
+                        term: query.term,
+                        when: query.when
+                    };
+                }));
+        });
     }
 
-    
+
 
 }

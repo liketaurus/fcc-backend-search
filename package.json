@@ -28,5 +28,12 @@
   "bugs": {
     "url": "https://github.com/liketaurus/fcc-backend-search/issues"
   },
-  "homepage": "https://github.com/liketaurus/fcc-backend-search#readme"
+  "homepage": "https://github.com/liketaurus/fcc-backend-search#readme",
+  "dependencies": {
+    "dotenv": "^2.0.0",
+    "express": "^4.14.0",
+    "mongodb": "^2.2.7",
+    "najax": "^0.7.1",
+    "path": "^0.12.7"
+  }
 }

@@ -9,4 +9,4 @@ Here are the specific user stories that was implemented in this project:
 
 * I can get a list of the most recently submitted search strings.
 
-Used best free google image search APIs1.0 by [ababeen ](http://api.ababeen.com/)
+Used free google image search APIs 1.0 by [ababeen ](http://api.ababeen.com/)

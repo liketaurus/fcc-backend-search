@@ -1,10 +1,25 @@
 //ababeen's best free google  image search  APIs1.0 used
 //see more: http://api.ababeen.com/
 module.exports = function(app, db) {
+
     app.route('/latest').get(getlatest);
     app.get('/:query', newQuery);
 
 
+    app.route('/')
+        .get(function(req, res) {
+            var firstDate;
+            var queries = db.collection('queries');
+            queries.find({}).toArray(function(err, result) {
+                firstDate=result[0].when;
+            });
+            queries.find({}).count(function(err,rescount){
+                res.render(process.cwd() + '/ui/index.html', {
+                num: rescount,
+                since: firstDate.split(',')[0]
+            });
+            });
+        });
 
     function save(obj, db) {
         var queries = db.collection('queries');

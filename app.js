@@ -9,19 +9,7 @@ var dotenv=require('dotenv').config({
 var port = process.env.PORT || 8080;
 var url = process.env.MONGOLAB_URI || "mongodb://liketaurus-fcc-back-full-3539759:27017/liketaurusurls";
 
-//app.engine('html', require('ejs').renderFile);
-
-// app.route('/')
-//     .get(function(req, res) {
-//      res.sendFile(process.cwd() + '/ui/index.html');
-//     });
-    
-// app.route('/new')
-//     .get(function(req, res) {
-//       res.render(process.cwd() + '/ui/error.html', {
-//         err: "You need to add a proper url after the '/new/' url portion"
-//       });
-//     });
+app.engine('html', require('ejs').renderFile);
 
 mongo.MongoClient.connect(url, function(err, db) {
 
@@ -47,3 +35,4 @@ mongo.MongoClient.connect(url, function(err, db) {
 app.listen(port, function() {
     console.log('Application started on port ' + port);
 });
+
